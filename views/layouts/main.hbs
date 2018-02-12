@@ -1,0 +1,22 @@
+<!--
+	main.hbs
+	author: Duc Giang
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Node Express-handlebars partials</title>
+		<link rel="stylesheet" href="/css/gallery.css" />
+	</head>
+
+	<body>
+<!--	placeholder for content from the header.hbs file in the /views/partials directory	-->
+		{{>header}}
+<!--	placeholder for the main webpage content from the /views directory (index.hbs file)	-->
+		{{{body}}}
+<!--	placeholder for content from the footer.hbs file in the /views/partials directory	-->
+		{{>footer}}
+	</body>
+</html>
