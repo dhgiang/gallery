@@ -2,7 +2,7 @@
  * Duc Giang
  * Simple Gallery
  * WEB322 Assignment #2
- * 
+ * URL: https://dhgiang-gallery.herokuapp.com
  */
 
 const express = require("express");
