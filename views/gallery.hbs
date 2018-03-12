@@ -1,8 +1,8 @@
-<form action="/" method="post">
+<form id="frmGallery" class="clsForm" action="/gallery" method="post">
 <div class="clsSelection">
-  <select name="character" id="character">
+  <select name="characterList" id="characterList">
     <option value="-1" selected>Choose a character</option>
-    {{#each data}}       
+    {{#each character}}       
     <option value="{{this.id}}">{{this.name}}</option>
     {{/each}}
   </select>
@@ -25,4 +25,9 @@
   {{else}}
   Artist
   {{/if}}
+</div>
+
+<div class="clsUsernameLogout">
+  <div id="divUsername">{{user}}</div>
+  <div id="divLogout"><a id="aLogout" onclick="fSubmitLogout();">Logout</a></div>
 </div>
