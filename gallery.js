@@ -1,6 +1,7 @@
 /**
  * Duc Giang
  * Simple Gallery
+ * WEB322 Assignment #2
  * 
  */
 
@@ -11,7 +12,6 @@ const path = require("path");
 const fs = require("fs");
 const session = require("client-sessions");
 const randomStr = require("randomstring");
-const popupS = require('popups');
 
 const app = express();
 
@@ -36,7 +36,7 @@ app.set("view engine", ".hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 
-// Create session
+// Create session-cookies
 app.use(session({
 	cookieName: "MySession",
 	secret: strRandom,
@@ -55,22 +55,20 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   var username = req.body.txtUserName;
   var password = req.body.txtPassword;
-  var msg = "";
-  var match = false;
+  var msg = "", match = false, userId = "";
   
   fs.readFile("./data/users.json", "utf-8", (err, data) => {
     if (err) throw err;
     var users = JSON.parse(data);
 
     // If the credentials match then create sessions and redirect to gallery
-    if (users.hasOwnProperty(username)){      
+    if (users.hasOwnProperty(username)){
       if (users[username] === password) {
         console.log("match found");
         req.MySession.user = username;
-        match = true;
-        msg = "New user added";
-        res.send(200,'')
+        match = true;        
       }
+      userId = username;
       msg = "Invalid password for the username used."
     } 
     else
@@ -80,7 +78,7 @@ app.post("/", (req, res) => {
   
     res.render(urlLink, {
       message: msg,
-      user: username,
+      user: userId,
       character: characters
     });     
   }); 
@@ -114,7 +112,7 @@ app.post("/register", (req, res) => {
         json = JSON.stringify(users);
         console.log(json);
         exist = false;
-        msg = "";
+        msg = "New user added!";
         fs.writeFile("./data/users.json", json, "utf-8", (err, data) => {
           if (err) throw err;
           console.log("user added");

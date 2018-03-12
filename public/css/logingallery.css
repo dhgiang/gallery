@@ -173,12 +173,12 @@ a#aRegister
 	margin-bottom: 5px;
 	text-align: center;
 	text-decoration: none;
-	width: 300px;	
+	width: 305px;	
 }
 button#btnLogin
 {
 	margin-bottom: 5px;
-	width: 300px;
+	width: 305px;
 }
 div.clslogincontent
 {
@@ -200,7 +200,7 @@ label#lblMessage
 	display: inline-block;
 	font: 0.9em calibri;	
 	margin-bottom: 5px;	
-	width: 300px;	
+	width: 305px;	
 }
 
 /*	Styling Rules: register	*/
