@@ -1,0 +1,57 @@
+{{#each errors}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}} 
+{{/each}}
+
+<div class="row mb-2">
+
+    <div class="col-sm">
+        <form id="frmGallery" action="/arts" method="POST">
+            <select name="characterList" id="characterList">
+                <option value="-1" selected>Choose a character</option>
+                {{#each arts}}
+                <option value="{{this.id}}">{{description}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" value="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="col-sm">
+        {{#if image}}
+        <a href="#imageModal" data-toggle="modal">
+            <img src="/img/{{image.filename}}" class="rounded mx-auto d-block mb-2" alt="{{image.description}}">
+        </a>        
+        <p class="text-center">{{image.description}}</p>
+        {{else}}
+        <img name="Artist" src="/img/Artist.jpg" class="rounded mx-auto d-block mb-2" alt="NO IMAGE" /> 
+        <p class="text-center">Artist</p>
+        {{/if}}
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="/arts/{{image.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel">{{image.description}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" value="{{image.id}}">
+                        <p>Price: {{image.price}}</p>
+                        <p>Status: {{image.status}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn_cancel" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="alert('Maybe next time')">Cancel</button>
+                        <button id="btn_purchase" type="submit" class="btn btn-primary">Purchase</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

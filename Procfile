@@ -1,1 +1,1 @@
-web: node gallery
+web: node app
